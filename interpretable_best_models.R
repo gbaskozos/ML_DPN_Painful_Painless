@@ -10,6 +10,7 @@ source("classMI.R")
 library(gridExtra)
 library(cowplot)
 
+#This function aggregates PD accross imputations
 aggregate_pdp <- function(model, feature, train_data, y="Outcome", class, method="pdp+ice") {
 model_list <- mapply(Predictor$new, model, train_data, y=y, type="prob", class=class)
 
