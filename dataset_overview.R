@@ -15,7 +15,7 @@ index <- which(data_Painful_Painless$Center!="Dundee")
 explanatory = names(data_Painful_Painless)[!names(data_Painful_Painless) %in% c("Neuropathy", "MNSI_status", "DN4_status", "Depression_metric", "Anxiety_metric", "Set_index")]
 dependent = "Set_index"
 data_Painful_Painless %>%
-summary_factorlist(dependent, explanatory, p = TRUE, na_include=TRUE, add_dependent_label=TRUE, column=TRUE, total_col=TRUE) -> t1
+summary_factorlist(dependent, explanatory, p = TRUE, na_include=TRUE, add_dependent_label=TRUE, column=TRUE, total_col=TRUE, cont = "median") -> t1
 
 rtffile <- RTF(paste0(PATH_res,"train_test.table.doc"))
 addTable(rtffile, t1)
@@ -33,7 +33,7 @@ data_Painful_Painless <- droplevels(data_Painful_Painless[!rownames(data_Painful
 explanatory = names(data_Painful_Painless[index,])[!names(data_Painful_Painless) %in% c("Outcome", "Neuropathy", "MNSI_status", "DN4_status", "Depression_metric", "Anxiety_metric", "Set_index")]
 dependent = "Outcome"
 data_Painful_Painless[index,] %>%
-summary_factorlist(dependent, explanatory, p = TRUE, na_include=TRUE, add_dependent_label=TRUE, column=TRUE, total_col=TRUE) -> t2
+summary_factorlist(dependent, explanatory, p = TRUE, na_include=TRUE, add_dependent_label=TRUE, column=TRUE, total_col=TRUE, cont = "median") -> t2
 
 rtffile <- RTF(paste0(PATH_res,"train.table.doc"))
 addTable(rtffile, t2)
@@ -46,7 +46,7 @@ knitr::kable(t2, row.names=FALSE, align=c("l", "l", "r", "r", "r")) %>% kable_st
 explanatory = names(data_Painful_Painless[index,])[!names(data_Painful_Painless) %in% c("Outcome", "Neuropathy", "MNSI_status", "DN4_status", "Depression_metric", "Anxiety_metric", "Set_index", "Center")]
 dependent = "Outcome"
 data_Painful_Painless[-index,] %>%
-summary_factorlist(dependent, explanatory, p = TRUE, na_include=TRUE, add_dependent_label=TRUE, column=TRUE, total_col=TRUE) -> t3
+summary_factorlist(dependent, explanatory, p = TRUE, na_include=TRUE, add_dependent_label=TRUE, column=TRUE, total_col=TRUE, cont = "median") -> t3
 
 rtffile <- RTF(paste0(PATH_res,"test.table.doc"))
 addTable(rtffile, t3)
